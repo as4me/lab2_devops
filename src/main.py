@@ -3,19 +3,15 @@
 import tornado.ioloop
 import tornado.web
 import json
-
+from functional import fib_f
 
 class Fib(tornado.web.RequestHandler):
 
-    def fib_f(self,n):
-        if n<3:
-            return 1
-        return self.fib_f(n-1) + self.fib_f(n-2)
 
 
     def get(self):
         n = int(self.get_argument('n'))
-        fib_n = self.fib_f(int(n))
+        fib_n = fib_f(int(n))
         self.write({"result":fib_n })
 
 application = tornado.web.Application([
